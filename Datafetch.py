@@ -1,9 +1,12 @@
 import requests
 import json
 
+# set ticker
+ticker = "AAPL"
+
 # fetch the data
 response = requests.get(
-    "https://www.alphavantage.co/query?function=TIME_SERIES_daily_ADJUSTED&outputsize=full&symbol=AAPL&apikey=RISJR704KEB8ZCB6")
+    f"https://www.alphavantage.co/query?function=TIME_SERIES_daily_ADJUSTED&outputsize=full&symbol={ticker}&apikey=RISJR704KEB8ZCB6")
 
 rawData = json.loads(response.text)
 timeSeriesData = rawData["Time Series (Daily)"]

@@ -14,12 +14,14 @@ dateString = finalData[0]
 prices = finalData[1]
 dates = [dt.datetime.strptime(d, '%Y-%m-%d').date() for d in dateString]
 
+# initialize plot onto GUI
+
 
 class MplCanvas(FigureCanvasQTAgg):
 
     def __init__(self, parent=None, width=5, height=4, dpi=100):
         fig = Figure(figsize=(width, height), dpi=dpi)
-        self.axes = fig.add_subplot(111)
+        self.axes = fig.add_subplot(111)  # 111 = 1x1 grid
         super(MplCanvas, self).__init__(fig)
 
 
@@ -32,8 +34,9 @@ class MainWindow(QtWidgets.QMainWindow):
         # which defines a single set of axes as self.axes.
         sc = MplCanvas()
         sc.axes.plot(dates, prices)
+        sc.axes.set_ylabel("Prices ($USD)")
+        sc.axes.set_title("AAPL Stock Data")
         self.setCentralWidget(sc)
-
         self.show()
 
 
